@@ -1,0 +1,1 @@
+Basic playground for sinon to better understand spies and stubs.
