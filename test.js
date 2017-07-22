@@ -19,8 +19,10 @@ describe('Spies', function() {
   it('should call user.setName once', function() {
     var spy = sinon.spy(user,'setName');
     user.setName("Randy");
-    sinon.assert.calledOnce(user.setName);
+    user.setName("Lisa");
+    sinon.assert.calledTwice(user.setName);
     sinon.assert.calledWith(user.setName, "Randy");
+    sinon.assert.calledWith(user.setName, "Lisa");
 
   });
 });
