@@ -16,11 +16,12 @@ describe('Spies', function() {
     sinon.assert.calledWith(logger, "test");
   });
 
-  it('should call user.setName once', function() {
+  it('should call user.setName Thrice', function() {
     var spy = sinon.spy(user,'setName');
     user.setName("Randy");
     user.setName("Lisa");
-    sinon.assert.calledTwice(user.setName);
+    user.setName("Lisa");
+    sinon.assert.calledThrice(user.setName);
     sinon.assert.calledWith(user.setName, "Randy");
     sinon.assert.calledWith(user.setName, "Lisa");
 
