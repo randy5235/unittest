@@ -7,6 +7,8 @@ const user = {
     name
   }
 };
+
+
 describe('Spies', function() {
   it('should call logger once', function() {
     var logger = sinon.spy(logger);
@@ -25,5 +27,15 @@ describe('Spies', function() {
     sinon.assert.calledWith(user.setName, "Randy");
     sinon.assert.calledWith(user.setName, "Lisa");
 
+  });
+});
+
+describe('Stubs', function() {
+  it('Should return specific values', function() {
+    const stub = sinon.stub(console, 'log');
+    logger('Test');
+    stub.restore();
+    sinon.assert.calledOnce(stub);
+    sinon.assert.calledWith(stub, 'Test');
   });
 });
