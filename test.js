@@ -39,3 +39,13 @@ describe('Stubs', function() {
     sinon.assert.calledWith(stub, 'Test');
   });
 });
+
+describe('Mocks', function() {
+  it('Should be called once and with specific values', function() {
+    const mock = sinon.mock(console);
+    mock.expects('log').once().withExactArgs('Test123');
+    logger('Test123');
+    mock.restore();
+    mock.verify();    
+  });
+});
