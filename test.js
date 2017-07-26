@@ -34,8 +34,9 @@ describe('Stubs', function() {
   it('Should return specific values', function() {
     const stub = sinon.stub(console, 'log');
     logger('Test');
+    logger('Test');
     stub.restore();
-    sinon.assert.calledOnce(stub);
+    sinon.assert.callCount(stub, 2);
     sinon.assert.calledWith(stub, 'Test');
   });
 });
@@ -45,6 +46,14 @@ describe('Mocks', function() {
     const mock = sinon.mock(console);
     mock.expects('log').once().withExactArgs('Test123');
     logger('Test123');
+    mock.restore();
+    mock.verify();    
+  });
+
+  it('Should be called once and with other values', function() {
+    const mock = sinon.mock(console);
+    mock.expects('log').once().withExactArgs('MyName');
+    logger('MyName');
     mock.restore();
     mock.verify();    
   });
