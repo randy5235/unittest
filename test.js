@@ -1,3 +1,5 @@
+// const {logger2}  = require('./lib/logger');
+const proxyquire = require('proxyquire').noCallThru();;
 const sinon = require('sinon');
 
 const logger = message => console.log(message);
@@ -8,6 +10,9 @@ const user = {
   }
 };
 
+const logger2 = proxyquire('./lib/logger', {'./values': {name: 'mock'}});
+
+logger2("thinst");
 
 describe('Spies', function() {
   it('should call logger once', function() {
