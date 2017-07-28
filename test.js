@@ -1,6 +1,7 @@
 // const {logger2}  = require('./lib/logger');
 const proxyquire = require('proxyquire').noCallThru();;
 const sinon = require('sinon');
+const { expect } = require('chai');
 
 const logger = message => console.log(message);
 
@@ -61,5 +62,13 @@ describe('Mocks', function() {
     logger('MyName');
     mock.restore();
     mock.verify();    
+  });
+
+  it('ProxyQuire', function() {
+    var spy = sinon.spy(logger2);
+    spy("randy");
+    expect(spy("randy")).to.be.equal('mockrandy');
+    sinon.assert.calledTwice(spy);
+
   });
 });
